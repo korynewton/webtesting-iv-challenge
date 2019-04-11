@@ -16,4 +16,13 @@ describe('server.js', () => {
       expect(res.body).toEqual({ message: 'Get working' });
     });
   });
+  describe('POST route', () => {
+    it('should respond with status 200', async () => {
+      const character = { name: 'Pizza the hut' };
+      const res = await request(server)
+        .post('/add')
+        .send(character);
+      expect(res.status).toBe(200);
+    });
+  });
 });
