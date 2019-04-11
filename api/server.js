@@ -3,7 +3,7 @@ const express = require('express');
 const server = express();
 
 server.get('/', (req, res) => {
-  res.send('GET connected');
+  res.json({ message: 'Get working' });
 });
 
 module.exports = server;
