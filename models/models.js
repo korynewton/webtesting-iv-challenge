@@ -4,7 +4,6 @@ module.exports = {
   insert,
   remove,
   getAll,
-  findById,
 };
 
 async function insert(character) {
@@ -15,18 +14,21 @@ async function insert(character) {
     .first();
 }
 
-async function update(id, changes) {
-  return null;
-}
+// async function update(id, changes) {
+//   return null;
+// }
 
-function remove(id) {
-  return null;
+async function remove(id) {
+  const deleted = await db('chars')
+    .where({ id })
+    .delete();
+  return deleted;
 }
 
 function getAll() {
   return db('chars');
 }
 
-function findById(id) {
-  return null;
-}
+// function findById(id) {
+//   return null;
+// }

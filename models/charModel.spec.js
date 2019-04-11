@@ -21,4 +21,15 @@ describe('POST /', async () => {
 
     expect(character.name).toBe('Barf');
   });
+
+  describe('Delete /', () => {
+    it('removes chaaracter from list', async () => {
+      const { id } = await Chars.insert({ name: 'Pizza the Hut' });
+      let characters = await Chars.getAll('chars');
+      expect(characters).toHaveLength(1);
+      Chars.remove(id);
+      characters = await Chars.getAll('chars');
+      expect(characters).toHaveLength(0);
+    });
+  });
 });
