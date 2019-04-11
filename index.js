@@ -1,5 +1,5 @@
-const server = require('./api');
+const server = require('./api/server');
 
 server.listen(5000, () => {
-  consoile.log('\n**up and running on 5k');
+  console.log('\n**up and running on 5k**');
 });
