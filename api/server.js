@@ -2,8 +2,8 @@ const express = require('express');
 
 const server = express();
 
-server.get('/', () => {
-  res.send('Get connected');
+server.get('/', (req, res) => {
+  res.send('GET connected');
 });
 
 module.exports = server;
