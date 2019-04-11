@@ -1,8 +1,6 @@
 const request = require('supertest');
 const server = require('./server');
 
-const Chars = require('../models/models');
-
 describe('server.js', () => {
   describe('GET /', () => {
     it('should respond with status 200 OK', async () => {

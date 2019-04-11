@@ -1,15 +1,18 @@
-// const Chars = require('./models/models');
-// const db = require('../data/dbConfig');
+const Chars = require('./models');
+const db = require('../data/dbConfig');
 
-// describe('POST /', async () => {
-//   beforeEach(async () => {
-//     await db('hobbits').truncate();
-//   });
+describe('POST /', async () => {
+  beforeEach(async () => {
+    await db('chars').truncate();
+  });
 
-//   it('should be an array 5 items long after adding', async () => {
-//     const res = await Chars.insert({ name: 'another char' });
-//     const characters = await db('chars');
+  it('should be an array 5 items long after adding', async () => {
+    await Chars.insert({ name: 'Pizza the Hut' });
+    await Chars.insert({ name: 'Princess Vespa' });
+    await Chars.insert({ name: 'Dark Helmet' });
 
-//     expect(characters).toHaveLength(4);
-//   });
-// });
+    const characters = await Chars.getAll('chars');
+
+    expect(characters).toHaveLength(3);
+  });
+});
