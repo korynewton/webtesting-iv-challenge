@@ -15,4 +15,10 @@ describe('POST /', async () => {
 
     expect(characters).toHaveLength(3);
   });
+
+  it('should insert provided character', async () => {
+    const character = await Chars.insert({ name: 'Barf' });
+
+    expect(character.name).toBe('Barf');
+  });
 });
