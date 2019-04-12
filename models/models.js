@@ -14,21 +14,13 @@ async function insert(character) {
     .first();
 }
 
-// async function update(id, changes) {
-//   return null;
-// }
-
 async function remove(id) {
   const deleted = await db('chars')
     .where({ id })
-    .delete();
+    .del();
   return deleted;
 }
 
 function getAll() {
   return db('chars');
 }
-
-// function findById(id) {
-//   return null;
-// }
