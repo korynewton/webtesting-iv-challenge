@@ -1,7 +1,12 @@
 const request = require('supertest');
 const server = require('./server');
+const db = require('../data/dbConfig');
 
 describe('server.js', () => {
+  beforeEach(async () => {
+    await db('chars').truncate();
+  });
+
   describe('GET /', () => {
     it('should respond with status 200 OK', async () => {
       const res = await request(server).get('/');
@@ -23,6 +28,22 @@ describe('server.js', () => {
         .post('/add')
         .send(character);
       expect(res.status).toBe(200);
+    });
+  });
+
+  describe('Delete route', () => {
+    it('should respond with a 200 status', async () => {
+      const character = { name: 'Pizza the hut' };
+      await request(server)
+        .post('/add')
+        .send(character);
+      const res = await request(server).delete('/1');
+      expect(res.status).toBe(200);
+    });
+
+    it('should respond with undefined', async () => {
+      const res = await request(server).delete('/1');
+      expect(res.body.message).toEqual('error');
     });
   });
 });
